@@ -4,7 +4,7 @@ from collections import defaultdict
 import time
 
 # Umbral: número de puertos distintos a los que un host debe intentar conectar en un tiempo dado para considerarse un escaneo
-UMBRAL_PUERTOS = 5
+UMBRAL_PUERTOS = 65535 # 65,535 - 0
 VENTANA_TIEMPO = 5  # segundos
 
 # Estructura para almacenar los intentos de conexión SYN recientes
@@ -24,7 +24,7 @@ def mostrar_paquete(paquete):
         elif paquete[IP].proto == 1:
             protocolo_nombre = "ICMP"
 
-        print(f"Paquete IP ({protocolo_nombre}): Origen={ip_origen}:{paquete[TCP].sport if TCP in paquete else ''}, Destino={ip_destino}:{puerto_destino if TCP in paquete else ''}, Flags={flags if TCP in paquete else ''}")
+        print(f"IP ({protocolo_nombre}): {ip_origen}:{paquete[TCP].sport if TCP in paquete else ''} -> {ip_destino}:{puerto_destino if TCP in paquete else ''} | Flags={flags if TCP in paquete else ''}")
 
         # Detección básica de escaneo de puertos TCP
         if flags == 'S':  # SYN flag activado (intento de nueva conexión)

@@ -4,7 +4,7 @@ from collections import defaultdict
 
 paquetes_por_destino = defaultdict(int)
 contador_paquetes = 0
-limite_conteo = 100  # Puedes ajustar este valor
+limite_conteo = 100 
 
 def mostrar_paquete(paquete):
     global paquetes_por_destino, contador_paquetes, limite_conteo
@@ -29,6 +29,7 @@ def mostrar_paquete(paquete):
                 print(f"Destino: {destino}, Conteo: {count}")
             paquetes_por_destino.clear()
             contador_paquetes = 0
+            
 
 def iniciar_captura(protocolo_filtro=None):
     print(f"Iniciando captura de tráfico {'filtrado por ' + protocolo_filtro if protocolo_filtro else 'sin filtro'}...")
